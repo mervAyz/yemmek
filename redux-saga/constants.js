@@ -1,0 +1,3 @@
+export const GET_MEALS = 'GET_USERS_FETCH';
+export const GET_MEALS_SUCCESS = 'GET_MEALS_SUCCESS';
+
