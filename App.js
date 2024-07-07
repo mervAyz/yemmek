@@ -20,6 +20,7 @@ import {getMeals} from './redux-saga/actions';
 const App = () => {
   const [enteredText, setEnteredText] = useState('');
   const [words, setWords] = useState([]);
+  const [mealsData, setMealsData] = useState(false);
 
   const dispatch = useDispatch();
   const meals = useSelector(state => state?.meals?.meals);
@@ -29,6 +30,12 @@ const App = () => {
       dispatch(getMeals(words));
     }
   }, [words]);
+
+  useEffect(() => {
+    if(meals){
+      setMealsData(meals)
+    }
+  },[meals])
 
   const handleTextChanged = (text) => {
     setEnteredText(text);
@@ -40,17 +47,16 @@ const App = () => {
 
   return (
     <SafeAreaView>
-      {/* <Text>Meals:</Text>
-      <Text>DENEE:</Text>
-      <View>
-        {meals?.map((item, index) => (
-          <Text key={index}>{item?.strMeal}</Text>
-        ))}
-      </View> */}
       <View style={{display: 'flex', borderColor: 'red', borderWidth: 1, flexDirection: 'column'}}>
         <TextInput placeholder="Malzemeleri girin" value={enteredText} onChangeText={handleTextChanged} />
-          <Button title="Ara" style={{backgroundColor: 'black'}} onPress={handleButtonClick}/>
+        <Button title="Ara" style={{backgroundColor: 'black'}} onPress={handleButtonClick}/>
       </View>
+      {mealsData && 
+        mealsData.map((item, index) => (
+          <Text key={index} style={{fontSize: 15}}>
+            {item?.strMeal}
+          </Text>
+        ))}
     </SafeAreaView>
   );
 };

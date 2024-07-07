@@ -1,8 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { GET_MEALS, GET_MEALS_SUCCESS } from './constants';
+import axios from 'axios';
+import { getMealsSuccess } from './actions';
 
 function mealsApi(mealData) {
-    return fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${mealData}`).then(response => response);
+    return axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${mealData}`)    
+    .then(response => response.data)
+    .catch(error => { throw error });  // Hata durumlarını fırlat
 }
 
 function* getMealsFetch(data){
@@ -13,7 +17,7 @@ function* getMealsFetch(data){
     }
     try {
         const meals = yield call(mealsApi, meal);
-        yield put({ type: GET_MEALS_SUCCESS, meals });
+        yield put(getMealsSuccess(meals));
     } catch (error) {
         console.error('Error fetching meals:', error);
         // You might want to dispatch an action for failure here
