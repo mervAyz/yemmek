@@ -5,59 +5,28 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  View,
-  Text,
-  TextInput,
   Button,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {getMeals} from './redux-saga/actions';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './src/screens/Home/Home';
+import Favorites from './src/screens/Favorites/Favorites';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [enteredText, setEnteredText] = useState('');
-  const [words, setWords] = useState([]);
-  const [mealsData, setMealsData] = useState(false);
-
-  const dispatch = useDispatch();
-  const meals = useSelector(state => state?.meals?.meals);
-
-  useEffect(() => {
-    if(words?.length !== 0) {
-      dispatch(getMeals(words));
-    }
-  }, [words]);
-
-  useEffect(() => {
-    if(meals){
-      setMealsData(meals)
-    }
-  },[meals])
-
-  const handleTextChanged = (text) => {
-    setEnteredText(text);
-  }
-
-  const handleButtonClick = () => {
-    setWords(enteredText);
-  }
 
   return (
-    <SafeAreaView>
-      <View style={{display: 'flex', borderColor: 'red', borderWidth: 1, flexDirection: 'column'}}>
-        <TextInput placeholder="Malzemeleri girin" value={enteredText} onChangeText={handleTextChanged} />
-        <Button title="Ara" style={{backgroundColor: 'black'}} onPress={handleButtonClick}/>
-      </View>
-      {mealsData && 
-        mealsData.map((item, index) => (
-          <Text key={index} style={{fontSize: 15}}>
-            {item?.strMeal}
-          </Text>
-        ))}
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Favorites" component={Favorites} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

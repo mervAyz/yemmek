@@ -315,6 +315,8 @@ PODS:
   - React-jsinspector (0.72.7)
   - React-logger (0.72.7):
     - glog
+  - react-native-safe-area-context (4.10.8):
+    - React-Core
   - React-NativeModulesApple (0.72.7):
     - hermes-engine
     - React-callinvoker
@@ -425,6 +427,13 @@ PODS:
     - React-jsi (= 0.72.7)
     - React-logger (= 0.72.7)
     - React-perflogger (= 0.72.7)
+  - RNGestureHandler (2.15.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
+  - RNScreens (3.32.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
+    - React-RCTImage
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -452,6 +461,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -469,6 +479,8 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -521,6 +533,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-perflogger:
@@ -555,6 +569,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -582,6 +600,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: c49502e5d02112247ee4526bc3ccfc891ae3eb9b
   React-jsinspector: 8baadae51f01d867c3921213a25ab78ab4fbcd91
   React-logger: 8edc785c47c8686c7962199a307015e2ce9a0e4f
+  react-native-safe-area-context: b7daa1a8df36095a032dff095a1ea8963cb48371
   React-NativeModulesApple: b6868ee904013a7923128892ee4a032498a1024a
   React-perflogger: 31ea61077185eb1428baf60c0db6e2886f141a5a
   React-RCTActionSheet: 392090a3abc8992eb269ef0eaa561750588fc39d
@@ -599,9 +618,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 7649c3b46c8dee1853691ecf60146a16ae59253c
   React-utils: 56838edeaaf651220d1e53cd0b8934fb8ce68415
   ReactCommon: 5f704096ccf7733b390f59043b6fa9cc180ee4f6
+  RNGestureHandler: 7909c50383a18f0cb10ce1db7262b9a6da504c03
+  RNScreens: 0bd9eec783bed1032e02a4db9976dae1664a5c7b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 4c3aa327e4a6a23eeacd71f61c81df1bcdf677d5
 
 PODFILE CHECKSUM: bb2411239bc0791d9500b49098a5697d027bc09f
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
