@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements';
+import {View, Text, Image, StyleSheet} from 'react-native';
+import {Icon} from 'react-native-elements';
 import images from '../../assets';
+import PropTypes, {object} from 'prop-types';
 
-const FoodCardComponent = ({ rating, title, price, thumb, id }) => {
-  return (
-    <View style={styles.cardContainer}>
-      <Image source={images.pancake} style={styles.image} />
-      <View style={styles.ratingContainer}>
-        <Icon name="star" type="font-awesome" color="#FF8C00" size={18} />
-        <Text style={styles.ratingText}>{rating}</Text>
-      </View>
-      <Text style={styles.title} numberOfLines={1}>{title}</Text>
-      <Text style={styles.price}>${price}</Text>
+const FoodCardComponent = ({data}) => {
+  return data?.map((item, index) => (
+    <View style={styles.cardContainer} key={index}>
+      <Image source={{ uri: item?.strMealThumb}} style={styles.image} />
+      {/* <View style={styles.ratingContainer}>
+            <Icon name="star" type="font-awesome" color="#FF8C00" size={18} />
+            <Text style={styles.ratingText}>{rating}</Text>
+          </View> */}
+      <Text style={styles.title} numberOfLines={1}>
+        {item?.strMeal}
+      </Text>
     </View>
-  );
+  ));
 };
 
 const styles = StyleSheet.create({
@@ -26,9 +28,9 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 10,
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: {width: 0, height: 5},
     marginBottom: 20,
-    padding: 5,
+    padding: 15,
     marginHorizontal: 12,
   },
   image: {
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
-    marginTop: 10,
+    marginTop: 20,
   },
   price: {
     fontSize: 16,
@@ -63,5 +65,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+
+FoodCardComponent.propTypes = {
+  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
 
 export default FoodCardComponent;

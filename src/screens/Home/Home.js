@@ -8,6 +8,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getMeals} from '../../redux-saga/actions';
@@ -46,66 +47,63 @@ const Home = ({navigation}) => {
   return (
     <ImageBackground source={images.searchBackground} style={styles.background}>
       <SafeAreaView style={{flex: 1}}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Icon
-              name="menu"
-              type="feather"
-              color="#fff"
-              size={24}
-              style={styles.menuIcon}
-            />
-            <View style={styles.headerRight}>
-              <Icon name="shopping-bag" type="feather" color="#fff" size={24} />
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={styles.container}>
+            <View style={styles.header}>
               <Icon
-                name="bell"
+                name="menu"
                 type="feather"
                 color="#fff"
                 size={24}
-                style={styles.bellIcon}
+                style={styles.menuIcon}
+              />
+              <View style={styles.headerRight}>
+                <Icon
+                  name="shopping-bag"
+                  type="feather"
+                  color="#fff"
+                  size={24}
+                />
+                <Icon
+                  name="bell"
+                  type="feather"
+                  color="#fff"
+                  size={24}
+                  style={styles.bellIcon}
+                />
+              </View>
+            </View>
+            <Text style={styles.title}>
+              Delicious food ready to delivered for you 🍜
+            </Text>
+            <View style={styles.searchContainer}>
+              <TouchableOpacity onPress={handleButtonClick}>
+                <Icon
+                  name="search"
+                  type="feather"
+                  color="#fff"
+                  size={24}
+                  style={styles.searchIcon}
+                />
+              </TouchableOpacity>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search food would you like to eat"
+                placeholderTextColor="#f2f2f2"
+                value={enteredText}
+                onChangeText={handleTextChanged}
               />
             </View>
           </View>
-          <Text style={styles.title}>
-            Delicious food ready to delivered for you 🍜
-          </Text>
-          <View style={styles.searchContainer}>
-            <TouchableOpacity onPress={handleButtonClick}>
-              <Icon
-                name="search"
-                type="feather"
-                color="#fff"
-                size={24}
-                style={styles.searchIcon}
-              />
-            </TouchableOpacity>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search food would you like to eat"
-              placeholderTextColor="#f2f2f2"
-              value={enteredText}
-              onChangeText={handleTextChanged}
-            />
-          </View>
-        </View>
 
-        <View style={{flex: 1}}>
-          {mealsData &&
-            mealsData.map((item, index) => (
-              <Text key={index} style={{fontSize: 15}}>
-                {item?.strMeal}
-              </Text>
-            ))}
-          <Button
+          <View style={{flex: 1}}>
+            {/* <Button
             title="Go to Details"
             onPress={() => navigation.navigate('Favorites')}
-          />
-          <FoodCardComponent
-            rating="4.7"
-            title="Grilled Cheese Salad ..."
-            price="15.50"
-          />
-        </View>
+          /> */}
+            {mealsData && <FoodCardComponent data={mealsData} />}
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );
