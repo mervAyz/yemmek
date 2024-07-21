@@ -44,6 +44,7 @@ const Home = ({navigation}) => {
     setWords(enteredText);
   };
 
+
   return (
     <ImageBackground source={images.searchBackground} style={styles.background}>
       <SafeAreaView style={{flex: 1}}>
@@ -97,11 +98,7 @@ const Home = ({navigation}) => {
           </View>
 
           <View style={{flex: 1}}>
-            {/* <Button
-            title="Go to Details"
-            onPress={() => navigation.navigate('Favorites')}
-          /> */}
-            {mealsData && <FoodCardComponent data={mealsData} />}
+            {mealsData && <FoodCardComponent data={mealsData} navigation={navigation}/>}
           </View>
         </ScrollView>
       </SafeAreaView>

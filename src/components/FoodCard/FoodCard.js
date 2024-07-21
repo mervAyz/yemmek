@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import images from '../../assets';
 import PropTypes, {object} from 'prop-types';
 
-const FoodCardComponent = ({data}) => {
+const FoodCardComponent = ({data, navigation}) => {
   return data?.map((item, index) => (
-    <View style={styles.cardContainer} key={index}>
+    <TouchableOpacity style={styles.cardContainer} key={index} onPress={() => navigation.push('Detail')}>
       <Image source={{ uri: item?.strMealThumb}} style={styles.image} />
       {/* <View style={styles.ratingContainer}>
             <Icon name="star" type="font-awesome" color="#FF8C00" size={18} />
@@ -15,7 +15,7 @@ const FoodCardComponent = ({data}) => {
       <Text style={styles.title} numberOfLines={1}>
         {item?.strMeal}
       </Text>
-    </View>
+    </TouchableOpacity>
   ));
 };
 
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
 
 FoodCardComponent.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-};
+  navigation: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+}
 
 export default FoodCardComponent;
